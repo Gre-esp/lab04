@@ -1,0 +1,13 @@
+{% extends "/layouts/application.html" %}
+{% block content %}
+<!-- Header con logo de Linio -->
+{% include '/layouts/header.html' %}
+
+<!-- Título de la página -->
+<h1>Detalle Producto</h1>
+<ul>
+{% for producto in productos %}
+    <li>{{producto}}</li>
+{% endfor %}
+</ul>
+{% endblock %}

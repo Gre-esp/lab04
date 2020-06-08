@@ -1,0 +1,40 @@
+{% extends "/layouts/application.html" %}
+{% block content %}
+
+<!-- Usaremos h1 para ponerle un título a nuestra página web -->
+<h1>Linio Express</h1>
+
+<!-- Pondremos una imagen con el logo de Linio y especificaremos la altura de la imagen con height-->
+<img src="https://linio-express.s3-sa-east-1.amazonaws.com/logos/Linio_logo.svg" height="100"><br>
+
+{% if session['user_email'] %}
+  <h2>¡Hola {{ session['user_name'] or '' }}!</h2>
+  <a href="{{ url_for('logout') }}">Cerrar sesión</a><br>
+
+{% else %}
+  <!-- Ponemos un enlace para que el usuario ingrese a su cuenta y otro para el registro -->
+  <a href="{{ url_for('login') }}">Iniciar sesión</a><br>
+  <a href="{{ url_for('registration') }}">Registrarse</a>
+{% endif %}
+
+<!-- Ponemos un subtítulo -->
+<h2>Tenemos los mejores productos en todas las categorías para tí</h2>
+<!-- Ponemos una ilustración y especificamos el ancho de la imagen con width -->
+<img src="https://linio-express.s3-sa-east-1.amazonaws.com/ilustraciones/welcome_illustration.svg" width="500">
+
+<!-- En una lista pondremos las categorías disponibles -->
+<h3>Categorías</h3>
+<ul>
+    <li>Arte y artesanías</li>
+    <li>Computadoras</li>
+    <li>Moda</li>
+    <li>Belleza y cuidado personal</li>
+    <li>Salud y bienestar</li>
+    <li>Deportes</li>
+    <li>Juguetes</li>
+    <li>Electrodomésticos</li>
+</ul>
+
+<!-- Footer -->
+{% include '/layouts/footer.html' %}
+{% endblock %}
