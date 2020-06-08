@@ -7,7 +7,9 @@
 <h1>Productos</h1>
 <ul>
 {% for producto in productos %}
-    <li>{{producto}}</li>
+    <li>
+        <a href="producto/{{producto[0]}}">{{producto[1]}}</a>
+    </li>
 {% endfor %}
 </ul>
 {% endblock %}

@@ -78,6 +78,27 @@ class Producto(object):
 
         return list_product
 
+    @classmethod
+    def obtener_producto(cls, producto:str) -> list:
+        list_product = None
+        database = sqlite3.connect("data/linioexp.db")  # ABRIR CONEXION CON BASE DE DATOS
+        try:
+            cursor = database.cursor()  # OBTENER OBJETO CURSOR
+            query = '''
+                SELECT * FROM productos
+                WHERE codigo = '{}'
+                '''.format(producto)
+
+            cursor.execute(query)  # EJECUTA LA OPERACION
+            list_product = cursor.fetchall()
+        except Exception as e:
+            database.rollback()  # RESTAURAR ANTES DE CAMBIOS POR ERROR
+            raise e
+        finally:
+            database.close()  # CERRAR CONEXION CON BASE DE DATOS
+
+        return list_product
+
     def actualizar_datos(self) -> bool:
         estado_ope: bool = False
         database = sqlite3.connect("data/linioexp.db")  # ABRIR CONEXION CON BASE DE DATOS

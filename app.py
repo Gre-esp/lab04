@@ -61,6 +61,14 @@ def product_list():
     productos= Producto.obtener_productos()
     return render_template('layouts/productos.html', productos=productos)
 
+@app.route('/producto/<idproducto>',methods=["get"])
+def product_detail(idproducto):
+    productos= Producto.obtener_producto(idproducto)
+    return render_template('layouts/product_detail.html', productos=productos)
+
+
+
+
 
 if __name__ == "__main__":
     app.secret_key = "clave_super_ultra_secreta"
